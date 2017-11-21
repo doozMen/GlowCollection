@@ -31,13 +31,13 @@ class GlowLayout: UICollectionViewFlowLayout {
         print("✨ layout attributes at item \(indexPath.item)")
 
         let attribute = super.layoutAttributesForItem(at: indexPath)
+        attribute?.zIndex = 0
 
         guard  indexpathForGlow?.row == indexPath.row, indexpathForGlow?.section == indexPath.section else {
             return attribute
         }
 
-        // configure z index
-
+        // Make sure the glowing cell is above other cells
         attribute?.zIndex = 1000
         return attribute
 

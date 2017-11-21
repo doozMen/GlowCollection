@@ -12,16 +12,13 @@ private let reuseIdentifier = "glowCell"
 
 class GlowCollectionViewController: UICollectionViewController {
 
-    private var colors: [UIColor] = [UIColor.red, UIColor.gray, UIColor.blue, UIColor.black, UIColor.green, UIColor.brown, UIColor.red]
+    private var colors: [UIColor] = Array(repeatElement(UIColor.red, count: 2000))
 
     @IBOutlet weak var glowLayout: GlowLayout!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        for _ in 0..<20 {
-            colors.append(contentsOf: colors)
-        }
+        collectionView?.allowsMultipleSelection = false
     }
 
     // MARK: UICollectionViewDataSource
@@ -39,48 +36,33 @@ class GlowCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GlowCollectionViewCell
 
         cell.color =  colors[indexPath.row]
-
-
-        if indexPath.row == 3 {
-            cell.glow()
-            glowLayout.indexpathForGlow = indexPath
-            let invalidContext = UICollectionViewFlowLayoutInvalidationContext()
-            invalidContext.invalidateItems(at: [indexPath])
-            glowLayout.invalidateLayout(with: invalidContext)
-        }
     
         return cell
     }
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let previousSelectedIndexPath = collectionView.indexPathsForSelectedItems?.first else {
+            return true
+        }
+
+        let cell = collectionView.cellForItem(at: previousSelectedIndexPath) as! GlowCollectionViewCell
+        cell.removeGlow()
+        glowLayout.indexpathForGlow = nil
+        let invalidContext = UICollectionViewFlowLayoutInvalidationContext()
+        invalidContext.invalidateItems(at: [previousSelectedIndexPath])
+        glowLayout.invalidateLayout(with: invalidContext)
         return true
     }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! GlowCollectionViewCell
+        cell.glow()
+        glowLayout.indexpathForGlow = indexPath
+        let invalidContext = UICollectionViewFlowLayoutInvalidationContext()
+        invalidContext.invalidateItems(at: [indexPath])
+        glowLayout.invalidateLayout(with: invalidContext)
     }
-    */
 
 }

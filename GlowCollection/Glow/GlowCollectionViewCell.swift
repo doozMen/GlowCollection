@@ -44,10 +44,14 @@ class GlowCollectionViewCell: UICollectionViewCell {
         glowView?.rightAnchor.constraint(equalTo: rightAnchor, constant: outset).isActive = true
     }
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
+    func removeGlow() {
         clipsToBounds = true
         glowView?.removeFromSuperview()
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        removeGlow()
     }
 
 }
