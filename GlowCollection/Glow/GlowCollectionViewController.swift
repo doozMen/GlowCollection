@@ -47,7 +47,11 @@ class GlowCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GlowCollectionViewCell
     
-        cell.backgroundColor = colors[indexPath.row]
+        cell.colorView.backgroundColor = colors[indexPath.row]
+
+        if indexPath.row == 3 {
+            cell.glow()
+        }
     
         return cell
     }
