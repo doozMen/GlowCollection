@@ -38,7 +38,7 @@ class GlowLayout: UICollectionViewFlowLayout {
         }
 
         // Make sure the glowing cell is above other cells
-        attribute?.zIndex = 1000
+        attribute?.zIndex = -1000
         return attribute
 
     }

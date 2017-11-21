@@ -43,11 +43,13 @@ class GlowCollectionViewController: UICollectionViewController {
     // MARK: UICollectionViewDelegate
 
     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        guard let previousSelectedIndexPath = collectionView.indexPathsForSelectedItems?.first else {
+        guard let previousSelectedIndexPath = collectionView.indexPathsForSelectedItems?.first,
+            let cell = collectionView.cellForItem(at: previousSelectedIndexPath) as? GlowCollectionViewCell else {
+                // This case happens when there is no previous selection or the cell is scrolled out of view
             return true
         }
 
-        let cell = collectionView.cellForItem(at: previousSelectedIndexPath) as! GlowCollectionViewCell
+
         cell.removeGlow()
         glowLayout.indexpathForGlow = nil
         let invalidContext = UICollectionViewFlowLayoutInvalidationContext()

@@ -60,7 +60,7 @@ class GlowCollectionViewCell: UICollectionViewCell {
             return
         }
 
-        glowView?.transform = view.transform.scaledBy(x: 0.5, y: 0.5)
+        glowView?.transform = view.transform.scaledBy(x: 0.01, y: 0.01)
 
         UIView.animate(withDuration: 0.7, delay: 0,
                        usingSpringWithDamping: 0.5,
@@ -82,7 +82,7 @@ class GlowCollectionViewCell: UICollectionViewCell {
                        usingSpringWithDamping: 0.5,
                        initialSpringVelocity: 0.7,
                        options: .allowUserInteraction, animations: {
-                        view.transform = view.transform.scaledBy(x: 0.2, y: 0.2)
+                        view.transform = view.transform.scaledBy(x: 0.0, y: 0.0)
         }, completion: completion)
 
     }
