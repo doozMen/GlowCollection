@@ -8,30 +8,13 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "glowCell"
 
 class GlowCollectionViewController: UICollectionViewController {
 
     private let colors: [UIColor] = [UIColor.red, UIColor.gray, UIColor.blue, UIColor.black, UIColor.green, UIColor.brown, UIColor.red]
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-       
-        self.collectionView!.register(GlowCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
+    @IBOutlet weak var glowLayout: GlowLayout!
 
     // MARK: UICollectionViewDataSource
 
@@ -46,11 +29,13 @@ class GlowCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GlowCollectionViewCell
-    
-        cell.colorView.backgroundColor = colors[indexPath.row]
+
+        cell.color =  colors[indexPath.row]
+
 
         if indexPath.row == 3 {
             cell.glow()
+            glowLayout.indexpathForGlow = indexPath
         }
     
         return cell

@@ -10,7 +10,18 @@ import UIKit
 
 class GlowCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var colorView: UIView!
+    let outset:CGFloat = 50
+    var color = UIColor.gray {
+        didSet {
+            colorView?.backgroundColor = color
+        }
+    }
+
+    @IBOutlet var colorView: UIView? {
+        didSet {
+            colorView?.backgroundColor = color
+        }
+    }
 
     private var glowView: UIView?
 
@@ -19,16 +30,17 @@ class GlowCollectionViewCell: UICollectionViewCell {
 
         glowView = UIView(frame: self.frame)
         glowView?.backgroundColor = UIColor.yellow
-        
+        glowView?.alpha = 0.5
+
         glowView?.translatesAutoresizingMaskIntoConstraints = false
         addSubview(glowView!)
+        sendSubview(toBack: glowView!)
 
-        glowView?.topAnchor.constraint(equalTo: self.topAnchor, constant: -10).isActive = true
-        glowView?.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
+        glowView?.topAnchor.constraint(equalTo: self.topAnchor, constant: -outset).isActive = true
+        glowView?.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: outset).isActive = true
 
-        glowView?.leftAnchor.constraint(equalTo: leftAnchor, constant: -10).isActive = true
-        glowView?.rightAnchor.constraint(equalTo: rightAnchor, constant: 10).isActive = true
-
+        glowView?.leftAnchor.constraint(equalTo: leftAnchor, constant: -outset).isActive = true
+        glowView?.rightAnchor.constraint(equalTo: rightAnchor, constant: outset).isActive = true
     }
 
     override func prepareForReuse() {
