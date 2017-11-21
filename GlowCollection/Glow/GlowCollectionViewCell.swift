@@ -86,10 +86,5 @@ class GlowCollectionViewCell: UICollectionViewCell {
         }, completion: completion)
 
     }
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        clipsToBounds = true
-        glowView?.removeFromSuperview()
-    }
 
 }

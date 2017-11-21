@@ -36,6 +36,14 @@ class GlowCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! GlowCollectionViewCell
 
         cell.color =  colors[indexPath.row]
+
+        if collectionView.indexPathsForSelectedItems?.contains(where: { (selectedIndexPath) -> Bool in
+            return indexPath.row == selectedIndexPath.row  && indexPath.section == selectedIndexPath.section
+        }) ?? false {
+            cell.glow()
+        } else {
+            cell.removeGlow()
+        }
     
         return cell
     }
