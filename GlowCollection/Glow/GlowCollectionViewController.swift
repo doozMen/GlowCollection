@@ -12,9 +12,17 @@ private let reuseIdentifier = "glowCell"
 
 class GlowCollectionViewController: UICollectionViewController {
 
-    private let colors: [UIColor] = [UIColor.red, UIColor.gray, UIColor.blue, UIColor.black, UIColor.green, UIColor.brown, UIColor.red]
+    private var colors: [UIColor] = [UIColor.red, UIColor.gray, UIColor.blue, UIColor.black, UIColor.green, UIColor.brown, UIColor.red]
 
     @IBOutlet weak var glowLayout: GlowLayout!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        for _ in 0..<20 {
+            colors.append(contentsOf: colors)
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 
