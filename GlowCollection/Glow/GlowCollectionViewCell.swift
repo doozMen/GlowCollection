@@ -26,6 +26,7 @@ class GlowCollectionViewCell: UICollectionViewCell {
     private var glowView: UIView?
 
     func glow() {
+        print("✨ ---glow---")
         clipsToBounds = false
 
         glowView = UIView(frame: self.frame)
