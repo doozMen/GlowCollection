@@ -36,6 +36,9 @@ class GlowCollectionViewController: UICollectionViewController {
         if indexPath.row == 3 {
             cell.glow()
             glowLayout.indexpathForGlow = indexPath
+            let invalidContext = UICollectionViewFlowLayoutInvalidationContext()
+            invalidContext.invalidateItems(at: [indexPath])
+            glowLayout.invalidateLayout(with: invalidContext)
         }
     
         return cell
