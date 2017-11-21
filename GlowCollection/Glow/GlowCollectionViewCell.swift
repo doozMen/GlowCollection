@@ -42,16 +42,54 @@ class GlowCollectionViewCell: UICollectionViewCell {
 
         glowView?.leftAnchor.constraint(equalTo: leftAnchor, constant: -outset).isActive = true
         glowView?.rightAnchor.constraint(equalTo: rightAnchor, constant: outset).isActive = true
+        animateGlowIn { _ in
+
+        }
     }
 
     func removeGlow() {
-        clipsToBounds = true
-        glowView?.removeFromSuperview()
+        removeGlowIN(animated: true) {[weak self] (_) in
+            self?.clipsToBounds = true
+            self?.glowView?.removeFromSuperview()
+        }
     }
 
+    private func animateGlowIn(completion: @escaping (Bool) -> Void) {
+        guard let view = glowView else {
+            completion(false)
+            return
+        }
+
+        glowView?.transform = view.transform.scaledBy(x: 0.5, y: 0.5)
+
+        UIView.animate(withDuration: 0.7, delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.7,
+                       options: .allowUserInteraction, animations: {
+            view.transform = CGAffineTransform.identity
+        }, completion: completion)
+    }
+
+    private func removeGlowIN (animated: Bool, completion: @escaping (Bool) -> Void) {
+        guard let view = glowView, animated else {
+            completion(false)
+            return
+        }
+
+        glowView?.transform = view.transform.scaledBy(x: 1.0, y: 1.0)
+
+        UIView.animate(withDuration: 0.7, delay: 0,
+                       usingSpringWithDamping: 0.5,
+                       initialSpringVelocity: 0.7,
+                       options: .allowUserInteraction, animations: {
+                        view.transform = view.transform.scaledBy(x: 0.2, y: 0.2)
+        }, completion: completion)
+
+    }
     override func prepareForReuse() {
         super.prepareForReuse()
-        removeGlow()
+        clipsToBounds = true
+        glowView?.removeFromSuperview()
     }
 
 }
