@@ -13,6 +13,7 @@
 		C078FF401FC425A000D44D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C078FF3F1FC425A000D44D86 /* Assets.xcassets */; };
 		C078FF431FC425A000D44D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C078FF411FC425A000D44D86 /* LaunchScreen.storyboard */; };
 		C078FF4B1FC425E200D44D86 /* GlowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078FF4A1FC425E200D44D86 /* GlowCollectionViewController.swift */; };
+		C078FF4E1FC4277100D44D86 /* GlowCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C078FF4D1FC4277100D44D86 /* GlowCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +24,8 @@
 		C078FF3F1FC425A000D44D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C078FF421FC425A000D44D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C078FF441FC425A000D44D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C078FF4A1FC425E200D44D86 /* GlowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GlowCollectionViewController.swift; path = Modules/Glow/GlowCollectionViewController.swift; sourceTree = "<group>"; };
+		C078FF4A1FC425E200D44D86 /* GlowCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowCollectionViewController.swift; sourceTree = "<group>"; };
+		C078FF4D1FC4277100D44D86 /* GlowCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlowCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,22 @@
 			children = (
 				C078FF381FC425A000D44D86 /* AppDelegate.swift */,
 				C078FF3A1FC425A000D44D86 /* ViewController.swift */,
-				C078FF4A1FC425E200D44D86 /* GlowCollectionViewController.swift */,
+				C078FF4C1FC4273A00D44D86 /* Glow */,
 				C078FF3C1FC425A000D44D86 /* Main.storyboard */,
 				C078FF3F1FC425A000D44D86 /* Assets.xcassets */,
 				C078FF411FC425A000D44D86 /* LaunchScreen.storyboard */,
 				C078FF441FC425A000D44D86 /* Info.plist */,
 			);
 			path = GlowCollection;
+			sourceTree = "<group>";
+		};
+		C078FF4C1FC4273A00D44D86 /* Glow */ = {
+			isa = PBXGroup;
+			children = (
+				C078FF4A1FC425E200D44D86 /* GlowCollectionViewController.swift */,
+				C078FF4D1FC4277100D44D86 /* GlowCollectionViewCell.swift */,
+			);
+			path = Glow;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +153,7 @@
 				C078FF3B1FC425A000D44D86 /* ViewController.swift in Sources */,
 				C078FF391FC425A000D44D86 /* AppDelegate.swift in Sources */,
 				C078FF4B1FC425E200D44D86 /* GlowCollectionViewController.swift in Sources */,
+				C078FF4E1FC4277100D44D86 /* GlowCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
